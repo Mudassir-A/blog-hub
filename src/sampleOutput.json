@@ -1,0 +1,46 @@
+{
+	"status": "ok",
+	"totalResults": 4,
+	"articles": [
+		{
+			"source": { "id": "bbc-sport", "name": "BBC Sport" },
+			"author": null,
+			"title": "BBC Sport's top 40 most engaging football stories this season",
+			"description": "These are the most engaging football stories that you have been reading this season. Grab a brew, sit down and enjoy.",
+			"url": "http://www.bbc.co.uk/sport/football/65601596",
+			"urlToImage": "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11372/production/_127941507_1446717371_laurence_griffiths.jpg",
+			"publishedAt": "2023-06-13T08:07:23.126107Z",
+			"content": "What follows below are the football stories that BBC Sport's users found the most engaging this season across our website and app.\r\nEngagement time of a story was determined by the average time it to… [+8786 chars]"
+		},
+		{
+			"source": { "id": "talksport", "name": "TalkSport" },
+			"author": "161385360554578",
+			"title": "Grealish carried out of hotel, Mbappe drops PSG bombshell, Rice to Arsenal latest",
+			"description": "talkSPORT.com brings you all the latest football news, views and transfer gossip from the Premier League and beyond. Top stories: Jack Grealish goes topless on tram and Erling Haaland pours champag…",
+			"url": "https://talksport.com/football/1456586/football-news-live-transfers-grealish-mbappe-rice-arsenal/",
+			"urlToImage": "https://talksport.com/wp-content/uploads/sites/5/2023/06/DK-TALKSPORT-BLOG-COMP-13-MAY.jpg?strip=all&quality=100&w=1500&h=1000&crop=1",
+			"publishedAt": "2023-06-13T07:03:35Z",
+			"content": "Kylian Mbappe has told Paris St Germain he will not take up a one-year contract extension, according to reports, so could be sold this summer or will be able to leave as a free agent at the end of ne… [+890 chars]"
+		},
+		{
+			"source": { "id": "fox-sports", "name": "Fox Sports" },
+			"author": null,
+			"title": "Deion Sanders in Joel Klatt interview series: 'I got to get it now'",
+			"description": "In college football’s new and ever-evolving landscape, Coach Prime is providing a master class in how to efficiently turn over a roster. And, he told Joel Klatt, he's offering no apologies.",
+			"url": "http://www.foxsports.com/stories/college-football/deion-sanders-in-joel-klatt-interview-series-i-got-to-get-it-now",
+			"urlToImage": "https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2023/06/1408/814/06.11.23_Big-Noon-Conversations-Joel-Klatt-Show_Deion-Sanders_16x9.jpg?ve=1&tl=1",
+			"publishedAt": "2023-06-12T14:52:12Z",
+			"content": "Editors Note: This summer, FOX Sports college football analyst Joel Klatt is interviewing the biggest names in college football as part of his new podcast series, \"The Joel Klatt Show: Big Noon Conve… [+7100 chars]"
+		},
+		{
+			"source": { "id": "espn-cric-info", "name": "ESPN Cric Info" },
+			"author": null,
+			"title": "Five famous people (and one cat) you didn't know have ESPNcricinfo profiles | ESPNcricinfo.com",
+			"description": "Why do a footballer, a Nobel laureate and a prime minister (no, not Imran Khan) find themselves in the ESPNcricinfo player database? | ESPNcricinfo.com",
+			"url": "http://www.espncricinfo.com/story/_/id/29102695/five-famous-people-one-cat-know-espncricinfo-profiles",
+			"urlToImage": "https://a.espncdn.com/i/cricket/cricinfo/1221668_1296x1296.gif",
+			"publishedAt": "2020-04-27T07:20:43Z",
+			"content": "Why do a cat, a footballer, a Nobel laureate and a prime minister find themselves in the ESPNcricinfo database? Here are six player profiles you wouldn't have expected we had.\r\nPeter the catThe only … [+5504 chars]"
+		}
+	]
+}
