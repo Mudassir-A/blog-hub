@@ -1,82 +1,87 @@
+import React, { useEffect, useState } from 'react'
+
 import NewsItem from './NewsItem'
-import React, { Component } from 'react'
+import Spinner from './Spinner';
 import PropTypes from 'prop-types'
-import Spinner from './Spinner'
+import InfiniteScroll from "react-infinite-scroll-component";
 
-export default class News extends Component {
+const News = (props) => {
+    const [articles, setArticles] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalResults, setTotalResults] = useState(0)
 
-    static defaultProps = {
-        country: 'in',
-        category: 'general',
-        apiKey: ""
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    static propTypes = {
-        country: PropTypes.string,
-        category: PropTypes.string,
-        apiKey: PropTypes.string
-    }
-
-    constructor() {
-        super();
-        console.log("Constructor");
-        this.state = {
-            articles: [],
-            loading: false,
-            page: 1
-        }
-    }
-
-    async updateNews() {
-        console.log("componentDidMount run");
-        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-        this.setState({ loading: true });
+    const updateNews = async () => {
+        props.setProgress(10);
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+        setLoading(true)
         let data = await fetch(url);
-        let parsedData = await data.json();
-        console.log(parsedData);
-        this.setState({
-            articles: parsedData.articles,
-            loading: false
-        })
+        props.setProgress(30);
+        let parsedData = await data.json()
+        props.setProgress(70);
+        setArticles(parsedData.articles)
+        setTotalResults(parsedData.totalResults)
+        setLoading(false)
+        props.setProgress(100);
     }
 
-    async componentDidMount() {
-        console.log("componentDidMount run");
-        this.updateNews()
-    }
+    useEffect(() => {
+        document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
+        updateNews();
+        // eslint-disable-next-line
+    }, [])
 
-    handlePrevClick = async () => {
-        console.log("Previous");
-        this.setState({ page: this.state.page - 1 });
-        this.updateNews();
-    }
 
-    handleNextClick = async () => {
-        console.log("Next");
-        this.setState({ page: this.state.page + 1 });
-        this.updateNews();
-    }
+    const fetchMoreData = async () => {
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
+        setPage(page + 1)
+        let data = await fetch(url);
+        let parsedData = await data.json()
+        setArticles(articles.concat(parsedData.articles))
+        setTotalResults(parsedData.totalResults)
+    };
 
-    render() {
-        console.log("render");
-        return (
-            <div className='container my-4'>
-                <h1 className='text-center mt-4'>Top Headlines</h1>
-                {this.state.loading && <Spinner />}
-                <div className="row">
-                    {(!this.state.loading) && this.state.articles.map((element) => {
-                        return (
-                            <div className="col-md-4" key={element.key}>
-                                <NewsItem key={element.key} title={element.title ? element.title.slice(0, 45) : ""} description={element.description ? element.description.slice(0, 80) : ""} urlToImage={element.urlToImage ? element.urlToImage : "https://static.vecteezy.com/system/resources/thumbnails/006/299/370/original/world-breaking-news-digital-earth-hud-rotating-globe-rotating-free-video.jpg"} newsUrl={element.url} sourceName={element.source.name} date={element.publishedAt} author={element.author} />
+    return (
+        <>
+            <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            {loading && <Spinner />}
+            <InfiniteScroll
+                dataLength={articles.length}
+                next={fetchMoreData}
+                hasMore={articles.length !== totalResults}
+                loader={<Spinner />}
+            >
+                <div className="container">
+
+                    <div className="row">
+                        {articles.map((element) => {
+                            return <div className="col-md-4" key={element.url}>
+                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} urlToImage={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
                             </div>
-                        )
-                    })}
+                        })}
+                    </div>
                 </div>
-                <div className="container d-flex justify-content-around my-4">
-                    <button disabled={this.state.page <= 1} type="button" className="btn btn-secondary btn-lg" onClick={this.handlePrevClick}>&larr; Previous</button>
-                    <button type="button" className="btn btn-secondary btn-lg" onClick={this.handleNextClick}>Next  &rarr;</button>
-                </div>
-            </div>
-        )
-    }
+            </InfiniteScroll>
+        </>
+    )
+
 }
+
+
+News.defaultProps = {
+    country: 'in',
+    pageSize: 8,
+    category: 'general',
+}
+
+News.propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
+}
+
+export default News
