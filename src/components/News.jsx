@@ -59,8 +59,10 @@ const News = (props) => {
 
                     <div className="row">
                         {articles.map((element) => {
+                            const desc = element.description
+                            console.log(desc ? desc.substring(0,100) : "")
                             return <div className="col-md-4" key={element.url}>
-                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} urlToImage={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description.substring(0,150) : "Description Not Available"} urlToImage={element.urlToImage ? element.urlToImage : "./default_image.png"} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
                             </div>
                         })}
                     </div>
