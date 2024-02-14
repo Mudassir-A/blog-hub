@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
+import noteContext from "../context/notes/noteContext";
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const News = (props) => {
+    const context = useContext(noteContext)
+    const { notes, getNotes, editNote } = context;
+	useEffect(() => {
+		getNotes();
+	}, []);
+
+    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "default" });
+
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
@@ -47,7 +56,14 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>BlogHub - Top {capitalizeFirstLetter(props.category)} Articles</h1>
+            {/* <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>BlogHub - Top {capitalizeFirstLetter(props.category)} Articles</h1> */}
+
+            <div className="d-flex align-items-center justify-content-center container-sm p-4 mt-5 mb-3 rounded"
+                style={{ width: "84%", height: "150px", backgroundImage: "url('Erie.gif')", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
+            >
+                <h1 style={{ fontSize: '50pt', fontFamily: '"Homemade Apple", cursive' }}>Read Our Blog</h1>
+            </div>
+
             {loading && <Spinner />}
             <InfiniteScroll
                 dataLength={articles.length}
@@ -58,11 +74,11 @@ const News = (props) => {
                 <div className="container">
 
                     <div className="row">
-                        {articles.map((element) => {
-                            const desc = element.description
-                            console.log(desc ? desc.substring(0,100) : "")
+                        {notes.map((note) => {
+                            const desc = note.description
+                            console.log(desc ? desc.substring(0, 100) : "")
                             return <div className="col-md-4" key={element.url}>
-                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description.substring(0,150) : "Description Not Available"} urlToImage={element.urlToImage ? element.urlToImage : "./default_image.png"} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description.substring(0, 150) : "Description Not Available"} urlToImage={element.urlToImage ? element.urlToImage : "./default_image.png"} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
                             </div>
                         })}
                     </div>
