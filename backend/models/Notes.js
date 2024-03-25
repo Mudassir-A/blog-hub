@@ -18,6 +18,10 @@ const NotesSchema = new Schema({
 		type: String,
 		default: "General",
 	},
+	image: {
+		type: String,
+		default: "./uploads/default_image.png"
+	},
 	timeStamp: {
 		type: Date,
 		default: Date.now,

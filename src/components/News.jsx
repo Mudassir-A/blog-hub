@@ -28,7 +28,6 @@ const News = (props) => {
 
     return (
         <>
-
             <div className="d-flex align-items-center justify-content-center container-sm p-4 mt-5 mb-3 rounded"
                 style={{ width: "84%", height: "150px", backgroundImage: "url('Erie.gif')", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
             >
@@ -42,7 +41,7 @@ const News = (props) => {
                         const desc = note.description
                         console.log(desc ? desc.substring(0, 100) : "")
                         return <div className="col-md-4" key={note._id}>
-                            <NewsItem title={note.title ? note.title : ""} description={note.description ? note.description.substring(0, 150) : "Description Not Available"} urlToImage={"./default_image.png"} newsUrl={''} author={''} date={''} source={''} />
+                            <NewsItem title={note.title ? note.title : ""} description={note.description ? note.description.substring(0, 150) : "Description Not Available"} urlToImage={"./uploads/default_image.png"} newsUrl={''} author={''} date={''} source={''} />
                         </div>
                     })}
                 </div>
