@@ -60,7 +60,9 @@ export default function Navbar() {
 							<input className="form-control me-2 text-primary" type="search" placeholder="Search" aria-label="Search" />
 							<button className="btn btn-outline-warning" type="submit">Search</button>
 						</form>
-						<img className="user_icon mx-3" src="user-regular.svg" style={{ color: "white", height: '25px' }} data-tooltip-variant="light" />
+						<Link to="/dashboard">
+							<img className="user_icon mx-3" src="user-regular.svg" style={{ color: "white", height: '25px' }} data-tooltip-variant="light" />
+						</Link>
 						<Tooltip anchorSelect=".user_icon" place="bottom">
 							User Profile
 						</Tooltip>

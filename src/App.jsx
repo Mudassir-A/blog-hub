@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import News from './components/News'
+// import DashApp from './components/dash/DashApp'
 import NoteState from "./context/noteState";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
@@ -26,6 +27,7 @@ export default function App() {
 							<Route path='/sports' element={<News setProgress={setProgress} apiKey={apiKey} key='sports' pageSize={pageSize} category='sports' />}></Route>
 							<Route path='/technology' element={<News setProgress={setProgress} apiKey={apiKey} key='technology' pageSize={pageSize} category='technology' />}></Route>
 							<Route path='/addnew' element={<Home />}></Route>
+							{/* <Route path='/dashboard' element={<DashApp/>}></Route> */}
 						</Routes>
 					</Router>
 				</NoteState>
